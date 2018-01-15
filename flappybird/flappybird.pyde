@@ -50,6 +50,10 @@ def draw():
     rect(pipe_x4, pipe_space4, 75, 100)
         
     # ball
+    ball.y += 4
     fill(0)
+    if keyPressed == True:
+        if key  == ' ':
+            ball.y -= 10
     ellipse(ball.x, ball.y, 30, 30)
     
