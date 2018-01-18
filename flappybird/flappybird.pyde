@@ -8,6 +8,8 @@ pipe_space1 = random(50, 350)
 pipe_space2 = random(50, 350)
 pipe_space3 = random(50, 350)
 pipe_space4 = random(50, 350)
+pipe_color = color(200)
+
 
 def setup():
     size(1000, 500)
@@ -63,11 +65,21 @@ def draw():
     if keyPressed == True:
         if key  == ' ':
             ball.y -= 10
-    if ball.y >= height or ball.x+15 == color(200):
+            
+    if ball.y >= height:
         ball.y = 250
         pipe_x1 = 1500
         pipe_x2 = 1200
         pipe_x3 = 900
         pipe_x4 = 600
+    
+    ball_space_color = get(ball.x + 16, ball.y + 16)
+    if ball_space_color == pipe_color:
+        ball.y = 250
+        pipe_x1 = 1500
+        pipe_x2 = 1200
+        pipe_x3 = 900
+        pipe_x4 = 600
+        
     ellipse(ball.x, ball.y, 30, 30)
     
