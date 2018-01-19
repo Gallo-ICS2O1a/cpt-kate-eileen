@@ -70,14 +70,22 @@ def draw():
     if keyPressed == True:
         if key  == ' ':
             for x in range(3, 0, -1):
-                ball.y -= (x**2)
+                ball.y -= (x**2)/1.25
   
-    if ball.y >= height:
-        ball.y = 250
-        pipe_x1 = 1500
-        pipe_x2 = 1200
-        pipe_x3 = 900
-        pipe_x4 = 600
+    if ball.y + 15 >= height or ball.y - 15 <= 0:
+        ball.y -= 4
+            pipe_x1 += 2
+            pipe_x2 += 2
+            pipe_x3 += 2
+            pipe_x4 += 2
+    
+    if pipe_x4 <= 200:
+        if ball.y - 15 <= pipe_space4 or ball.y + 15 >= pipe_space4 + 125:
+            ball.y -= 4
+            pipe_x1 += 2
+            pipe_x2 += 2
+            pipe_x3 += 2
+            pipe_x4 += 2
     
     ellipse(ball.x, ball.y, 30, 30)
     
