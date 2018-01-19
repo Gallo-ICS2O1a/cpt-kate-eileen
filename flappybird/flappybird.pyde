@@ -74,12 +74,36 @@ def draw():
   
     if ball.y + 15 >= height or ball.y - 15 <= 0:
         ball.y -= 4
+        pipe_x1 += 2
+        pipe_x2 += 2
+        pipe_x3 += 2
+        pipe_x4 += 2
+    
+    if pipe_x1 - 15 <= 200 and pipe_x1 + 75 >= 200:
+        if ball.y - 15 <= pipe_space1 or ball.y + 15 >= pipe_space1 + 125:
+            ball.y -= 4
             pipe_x1 += 2
             pipe_x2 += 2
             pipe_x3 += 2
             pipe_x4 += 2
-    
-    if pipe_x4 <= 200:
+
+    if pipe_x2 - 15 <= 200 and pipe_x2 + 75 >= 200:
+        if ball.y - 15 <= pipe_space2 or ball.y + 15 >= pipe_space2 + 125:
+            ball.y -= 4
+            pipe_x1 += 2
+            pipe_x2 += 2
+            pipe_x3 += 2
+            pipe_x4 += 2
+            
+    if pipe_x3 - 15 <= 200 and pipe_x3 + 75 >= 200:
+        if ball.y - 15 <= pipe_space3 or ball.y + 15 >= pipe_space3 + 125:
+            ball.y -= 4
+            pipe_x1 += 2
+            pipe_x2 += 2
+            pipe_x3 += 2
+            pipe_x4 += 2
+            
+    if pipe_x4 - 15 <= 200 and pipe_x4 + 75 >= 200:
         if ball.y - 15 <= pipe_space4 or ball.y + 15 >= pipe_space4 + 125:
             ball.y -= 4
             pipe_x1 += 2
