@@ -116,6 +116,10 @@ def draw():
             if key  == ' ':
                 for x in range(3, 0, -1):
                     ball.y -= (x**2)/1.25
+    else:
+        textAlign(CENTER)
+        text("PRESS SPACE TO START", 500, 250)
 
     fill(244, 232, 193)
     ellipse(ball.x, ball.y, 30, 30)
+    
