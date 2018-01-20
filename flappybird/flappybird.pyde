@@ -8,7 +8,6 @@ pipe_space1 = random(50, 325)
 pipe_space2 = random(50, 325)
 pipe_space3 = random(50, 325)
 pipe_space4 = random(50, 325)
-pipe_color = color(114, 106, 149)
 movement = False
 points = 0
 
@@ -22,16 +21,17 @@ def pipe_setup(pipe_x, pipe_space):
     global pipe_space2
     global pipe_space3
     global pipe_space4
-    global pipe_color
     global movement
     global points
     
     # pipes
-    fill(pipe_color)
+    fill(255, 131, 87)
     rect(pipe_x, 0, 75, height)
+    fill(226, 91, 69)
+    rect(pipe_x + 50, 0, 25, height)
     
     # pipe space
-    fill(160, 193, 184)
+    fill(206, 241, 235)
     rect(pipe_x, pipe_space, 75, 125)
     
     # points
@@ -50,6 +50,7 @@ def pipe_setup(pipe_x, pipe_space):
                     pipe_x4 = 600
                     ball.y = 250
                     movement = True
+                    points = 0
 
 
 def setup():
@@ -70,11 +71,11 @@ def draw():
     global movement
     global points
     
-    background(160, 193, 184)
+    # background
+    background(206, 241, 235)
     noStroke()
     
-    # background
-    fill(112, 159, 176)
+    fill(173, 201, 101)
     rect(0, 450, 1000, 50)
     
     if keyPressed == True:
@@ -117,6 +118,8 @@ def draw():
         textAlign(CENTER)
         text("PRESS SPACE TO START", 500, 250)
 
-    fill(244, 232, 193)
+    fill(250, 210, 114)
     ellipse(ball.x, ball.y, 30, 30)
+    fill(250, 193, 114)
+    arc(ball.x, ball.y, 30, 30, -HALF_PI, HALF_PI)
     
