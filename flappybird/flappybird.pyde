@@ -34,6 +34,9 @@ def pipe_setup(pipe_x, pipe_space):
     fill(160, 193, 184)
     rect(pipe_x, pipe_space, 75, 125)
     
+    # points
+    if ball.x -18 <= pipe_x + 75/2 <= ball.x - 16: points += 1
+    
     # collision
     if ((pipe_x - 15 <= 200 and pipe_x + 75 >= 200 and
         (ball.y - 15 <= pipe_space or ball.y + 15 >= pipe_space + 125)) or
@@ -94,16 +97,10 @@ def draw():
     pipe_setup(pipe_x3, pipe_space3)
     pipe_setup(pipe_x4, pipe_space4)
     
-    # points
-    if pipe_x1 + 75/2 == ball.x - 16: points += 1
-    if pipe_x2 + 75/2 == ball.x - 16: points += 1
-    if pipe_x3 + 75/2 == ball.x - 16: points += 1
-    if pipe_x4 + 75/2 == ball.x - 16: points += 1
-    
-    textSize(25)
+    textSize(45)
     fill(255)
-    textAlign(LEFT)
-    text(str(points), 30, 30)
+    textAlign(CENTER)
+    text(str(points), 500, 100)
         
     # ball
     if movement == True:
