@@ -9,7 +9,8 @@ pipe_space2 = random(50, 325)
 pipe_space3 = random(50, 325)
 pipe_space4 = random(50, 325)
 pipe_color = color(114, 106, 149)
-movement = True
+movement = False
+points = 0
 
 
 def pipe_setup(pipe_x, pipe_space):
@@ -23,6 +24,7 @@ def pipe_setup(pipe_x, pipe_space):
     global pipe_space4
     global pipe_color
     global movement
+    global points
     
     # pipes
     fill(pipe_color)
@@ -33,8 +35,9 @@ def pipe_setup(pipe_x, pipe_space):
     rect(pipe_x, pipe_space, 75, 125)
     
     # collision
-    if pipe_x - 15 <= 200 and pipe_x + 75 >= 200:
-        if ball.y - 15 <= pipe_space or ball.y + 15 >= pipe_space + 125:
+    if ((pipe_x - 15 <= 200 and pipe_x + 75 >= 200 and
+        (ball.y - 15 <= pipe_space or ball.y + 15 >= pipe_space + 125)) or
+        ball.y + 15 >= height):
             movement = False
             if keyPressed == True:
                 if key == ' ':
@@ -62,6 +65,7 @@ def draw():
     global pipe_space3
     global pipe_space4
     global movement
+    global points
     
     background(160, 193, 184)
     noStroke()
@@ -69,6 +73,10 @@ def draw():
     # background
     fill(112, 159, 176)
     rect(0, 450, 1000, 50)
+    
+    if keyPressed == True:
+            if key  == ' ':
+                movement = True
     
     # pipes
     if pipe_x1 <= -200: pipe_x1 = 1000
@@ -85,6 +93,17 @@ def draw():
     pipe_setup(pipe_x2, pipe_space2)
     pipe_setup(pipe_x3, pipe_space3)
     pipe_setup(pipe_x4, pipe_space4)
+    
+    # points
+    if pipe_x1 + 75/2 == ball.x - 16: points += 1
+    if pipe_x2 + 75/2 == ball.x - 16: points += 1
+    if pipe_x3 + 75/2 == ball.x - 16: points += 1
+    if pipe_x4 + 75/2 == ball.x - 16: points += 1
+    
+    textSize(25)
+    fill(255)
+    textAlign(LEFT)
+    text(str(points), 30, 30)
         
     # ball
     if movement == True:
@@ -97,18 +116,6 @@ def draw():
             if key  == ' ':
                 for x in range(3, 0, -1):
                     ball.y -= (x**2)/1.25
-    
-    if ball.y + 15 >= height or ball.y - 15 <= 0:
-        movement = False
-        if keyPressed == True:
-            if key == ' ':
-                pipe_x1 = 1500
-                pipe_x2 = 1200
-                pipe_x3 = 900
-                pipe_x4 = 600
-                ball.y = 250
-                movement = True
 
     fill(244, 232, 193)
     ellipse(ball.x, ball.y, 30, 30)
-    
