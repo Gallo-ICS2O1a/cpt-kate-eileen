@@ -35,25 +35,22 @@ def pipe_setup(pipe_x, pipe_space):
     rect(pipe_x, pipe_space, 75, 125)
     
     # points
-    if ball.x -18 <= pipe_x + 75/2 <= ball.x - 16: points += 1
+    if ball.x - 18 <= pipe_x + 75 / 2 <= ball.x - 16: points += 1
     
     # collision
     if ((pipe_x - 15 <= 200 and pipe_x + 75 >= 200 and
         (ball.y - 15 <= pipe_space or ball.y + 15 >= pipe_space + 125)) or
         ball.y + 15 >= height):
             movement = False
-            ball.y += 4
-            if ball.y + 15 >= height:
-                ball.y -= 4
-                if keyPressed == True:
-                    if key == ' ':
-                        pipe_x1 = 1500
-                        pipe_x2 = 1200
-                        pipe_x3 = 900
-                        pipe_x4 = 600
-                        ball.y = 250
-                        movement = True
-                        points = 0
+            if keyPressed is True:
+                if key == ' ':
+                    pipe_x1 = 1500
+                    pipe_x2 = 1200
+                    pipe_x3 = 900
+                    pipe_x4 = 600
+                    ball.y = 250
+                    movement = True
+                    points = 0
 
 
 def setup():
@@ -81,8 +78,8 @@ def draw():
     fill(173, 201, 101)
     rect(0, 450, 1000, 50)
     
-    if keyPressed == True:
-            if key  == ' ':
+    if keyPressed is True:
+            if key == ' ':
                 movement = True
     
     # pipes
@@ -107,14 +104,14 @@ def draw():
     text(str(points), 500, 100)
         
     # ball
-    if movement == True:
+    if movement is True:
         ball.y += 4
         pipe_x1 -= 2
         pipe_x2 -= 2
         pipe_x3 -= 2
         pipe_x4 -= 2
-        if keyPressed == True:
-            if key  == ' ':
+        if keyPressed is True:
+            if key == ' ':
                 for x in range(3, 0, -1):
                     ball.y -= (x**2)/1.25
     else:
