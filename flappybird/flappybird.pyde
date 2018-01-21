@@ -42,15 +42,18 @@ def pipe_setup(pipe_x, pipe_space):
         (ball.y - 15 <= pipe_space or ball.y + 15 >= pipe_space + 125)) or
         ball.y + 15 >= height):
             movement = False
-            if keyPressed == True:
-                if key == ' ':
-                    pipe_x1 = 1500
-                    pipe_x2 = 1200
-                    pipe_x3 = 900
-                    pipe_x4 = 600
-                    ball.y = 250
-                    movement = True
-                    points = 0
+            ball.y += 4
+            if ball.y + 15 >= height:
+                ball.y -= 4
+                if keyPressed == True:
+                    if key == ' ':
+                        pipe_x1 = 1500
+                        pipe_x2 = 1200
+                        pipe_x3 = 900
+                        pipe_x4 = 600
+                        ball.y = 250
+                        movement = True
+                        points = 0
 
 
 def setup():
